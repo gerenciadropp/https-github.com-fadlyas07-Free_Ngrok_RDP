@@ -1,6 +1,7 @@
 import { ThreeCanvas } from "@remotion/three";
 import { Environment, Lightformer, MeshReflectorMaterial, Sparkles } from "@react-three/drei";
 import { Bloom, DepthOfField, EffectComposer, Vignette } from "@react-three/postprocessing";
+import { z } from "zod";
 import { AbsoluteFill, Sequence, interpolate, useCurrentFrame, useVideoConfig } from "remotion";
 import "../fonts";
 import { FONTE } from "../fonts";
@@ -17,7 +18,12 @@ export const TOMADAS: Tomada[] = [
 ];
 export const DURACAO_CINEMATOGRAFICO = duracaoTotal(TOMADAS);
 
-const Cenario: React.FC = () => {
+export const cinematograficoSchema = z.object({
+  /** true = sem chão espelhado, sombras e desfoque: bem mais rápido (bom para prévias) */
+  rapido: z.boolean(),
+});
+
+const Cenario: React.FC<{ rapido: boolean }> = ({ rapido }) => {
   const frame = useCurrentFrame();
   return (
     <>
@@ -54,13 +60,17 @@ const Cenario: React.FC = () => {
       {/* Chão espelhado */}
       <mesh rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
         <planeGeometry args={[80, 80]} />
-        <MeshReflectorMaterial
-          resolution={1024} mirror={0.6} mixBlur={1} blur={[300, 80]} mixStrength={2}
-          roughness={0.8} depthScale={1} color="#0a0a12" metalness={0.5}
-        />
+        {rapido ? (
+          <meshStandardMaterial color="#0a0a12" metalness={0.8} roughness={0.3} />
+        ) : (
+          <MeshReflectorMaterial
+            resolution={1024} mirror={0.6} mixBlur={1} blur={[300, 80]} mixStrength={2}
+            roughness={0.8} depthScale={1} color="#0a0a12" metalness={0.5}
+          />
+        )}
       </mesh>
 
-      <Sparkles count={120} scale={[14, 6, 14]} position={[0, 3, 0]} size={2} speed={0} color="#e9d5ff" />
+      <Sparkles count={rapido ? 40 : 120} scale={[14, 6, 14]} position={[0, 3, 0]} size={2} speed={0} color="#e9d5ff" />
     </>
   );
 };
@@ -94,18 +104,24 @@ const Titulo: React.FC<{ texto: string; sub: string }> = ({ texto, sub }) => {
   );
 };
 
-export const Cinematografico: React.FC = () => {
+export const Cinematografico: React.FC<z.infer<typeof cinematograficoSchema>> = ({ rapido }) => {
   const { width, height } = useVideoConfig();
   return (
     <AbsoluteFill style={{ backgroundColor: "black" }}>
-      <ThreeCanvas width={width} height={height} shadows camera={{ position: [0, 2, 10], fov: 40, near: 0.1, far: 100 }}>
+      <ThreeCanvas width={width} height={height} shadows={!rapido} camera={{ position: [0, 2, 10], fov: 40, near: 0.1, far: 100 }}>
         <CameraRig tomadas={TOMADAS} tremor={0.02} />
-        <Cenario />
-        <EffectComposer multisampling={0}>
-          <DepthOfField focusDistance={0.02} focalLength={0.05} bokehScale={3} />
-          <Bloom intensity={0.9} luminanceThreshold={0.6} mipmapBlur />
-          <Vignette eskil={false} offset={0.2} darkness={0.8} />
-        </EffectComposer>
+        <Cenario rapido={rapido} />
+        {rapido ? (
+          <EffectComposer multisampling={0}>
+            <Vignette eskil={false} offset={0.2} darkness={0.8} />
+          </EffectComposer>
+        ) : (
+          <EffectComposer multisampling={0}>
+            <DepthOfField focusDistance={0.02} focalLength={0.05} bokehScale={3} />
+            <Bloom intensity={0.9} luminanceThreshold={0.6} mipmapBlur />
+            <Vignette eskil={false} offset={0.2} darkness={0.8} />
+          </EffectComposer>
+        )}
       </ThreeCanvas>
       <Sequence from={30} durationInFrames={90}>
         <Titulo texto="CINEMATIC" sub="REMOTION × THREE.JS" />

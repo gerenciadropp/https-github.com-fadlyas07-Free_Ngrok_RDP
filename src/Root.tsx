@@ -1,6 +1,6 @@
 import { Composition } from "remotion";
 import { Cena3D } from "./compositions/Cena3D";
-import { Cinematografico, DURACAO_CINEMATOGRAFICO } from "./compositions/Cinematografico";
+import { Cinematografico, DURACAO_CINEMATOGRAFICO, cinematograficoSchema } from "./compositions/Cinematografico";
 import { AnuncioVertical, anuncioSchema } from "./compositions/AnuncioVertical";
 
 export const RemotionRoot: React.FC = () => {
@@ -36,6 +36,8 @@ export const RemotionRoot: React.FC = () => {
       <Composition
         id="Cinematografico"
         component={Cinematografico}
+        schema={cinematograficoSchema}
+        defaultProps={{ rapido: false }}
         durationInFrames={DURACAO_CINEMATOGRAFICO}
         fps={30}
         width={1920}
