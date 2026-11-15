@@ -1,0 +1,17 @@
+[
+  {"text": "Cansado", "startMs": 500, "endMs": 900, "timestampMs": 700, "confidence": 1},
+  {"text": " de", "startMs": 900, "endMs": 1100, "timestampMs": 1000, "confidence": 1},
+  {"text": " perder", "startMs": 1100, "endMs": 1500, "timestampMs": 1300, "confidence": 1},
+  {"text": " tempo?", "startMs": 1500, "endMs": 2200, "timestampMs": 1850, "confidence": 1},
+  {"text": " Conheça", "startMs": 2600, "endMs": 3100, "timestampMs": 2850, "confidence": 1},
+  {"text": " a", "startMs": 3100, "endMs": 3250, "timestampMs": 3175, "confidence": 1},
+  {"text": " solução", "startMs": 3250, "endMs": 3900, "timestampMs": 3575, "confidence": 1},
+  {"text": " que", "startMs": 4300, "endMs": 4500, "timestampMs": 4400, "confidence": 1},
+  {"text": " faz", "startMs": 4500, "endMs": 4800, "timestampMs": 4650, "confidence": 1},
+  {"text": " tudo", "startMs": 4800, "endMs": 5200, "timestampMs": 5000, "confidence": 1},
+  {"text": " por", "startMs": 5200, "endMs": 5400, "timestampMs": 5300, "confidence": 1},
+  {"text": " você.", "startMs": 5400, "endMs": 6200, "timestampMs": 5800, "confidence": 1},
+  {"text": " Teste", "startMs": 6800, "endMs": 7200, "timestampMs": 7000, "confidence": 1},
+  {"text": " grátis", "startMs": 7200, "endMs": 7700, "timestampMs": 7450, "confidence": 1},
+  {"text": " hoje!", "startMs": 7700, "endMs": 8600, "timestampMs": 8150, "confidence": 1}
+]

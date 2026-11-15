@@ -1,0 +1,51 @@
+{
+  "name": "videos-3d-anuncios",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Vídeos 3D e anúncios com Remotion + Three.js, legendas e áudio",
+  "scripts": {
+    "dev": "remotion studio",
+    "render": "remotion render",
+    "render:ad": "remotion render AnuncioVertical out/anuncio-vertical.mp4",
+    "render:3d": "remotion render Cena3D out/cena-3d.mp4",
+    "render:cine": "remotion render Cinematografico out/cinematografico.mp4",
+    "render:all": "remotion render AnuncioVertical out/anuncio-vertical.mp4 && remotion render Cena3D out/cena-3d.mp4 && remotion render Cinematografico out/cinematografico.mp4",
+    "still": "remotion still",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@fontsource/inter": "^5.3.0",
+    "@react-three/drei": "^10.7.9",
+    "@react-three/fiber": "^9.8.2",
+    "@react-three/postprocessing": "^3.2.2",
+    "@remotion/bundler": "^4.0.543",
+    "@remotion/captions": "^4.0.543",
+    "@remotion/cli": "^4.0.543",
+    "@remotion/fonts": "^4.0.543",
+    "@remotion/google-fonts": "^4.0.543",
+    "@remotion/install-whisper-cpp": "^4.0.543",
+    "@remotion/layout-utils": "^4.0.543",
+    "@remotion/media": "^4.0.543",
+    "@remotion/media-utils": "^4.0.543",
+    "@remotion/motion-blur": "^4.0.543",
+    "@remotion/noise": "^4.0.543",
+    "@remotion/paths": "^4.0.543",
+    "@remotion/renderer": "^4.0.543",
+    "@remotion/three": "^4.0.543",
+    "@remotion/transitions": "^4.0.543",
+    "@remotion/zod-types": "^4.0.543",
+    "maath": "^0.10.8",
+    "postprocessing": "^6.39.6",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "remotion": "^4.0.543",
+    "three": "^0.187.0",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@types/three": "^0.187.0",
+    "typescript": "^7.0.2"
+  }
+}
