@@ -1,4 +1,5 @@
 import { Composition } from "remotion";
+import { AnuncioLia, DURACAO_LIA } from "./compositions/aivatech/AnuncioLia";
 import { Cena3D } from "./compositions/Cena3D";
 import { Cinematografico, DURACAO_CINEMATOGRAFICO, cinematograficoSchema } from "./compositions/Cinematografico";
 import { AnuncioVertical, anuncioSchema } from "./compositions/AnuncioVertical";
@@ -31,6 +32,15 @@ export const RemotionRoot: React.FC = () => {
         fps={30}
         width={1920}
         height={1080}
+      />
+      {/* AivaTech — anúncio da Lia (AcessorIA), Reels 9:16, 15s */}
+      <Composition
+        id="AnuncioLia"
+        component={AnuncioLia}
+        durationInFrames={DURACAO_LIA}
+        fps={30}
+        width={1080}
+        height={1920}
       />
       {/* Filme cinematográfico 16:9 com vários movimentos de câmera */}
       <Composition
